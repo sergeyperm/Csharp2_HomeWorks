@@ -14,6 +14,7 @@ namespace Asteroids
         private static BufferedGraphicsContext _context;
         public static BufferedGraphics Buffer;
         public static Galaxy galaxy;
+        public static Sputnic sputnic = new Sputnic(new Point(100, 200), new Point(5, 5), new Size(20, 20), "\\PlanetImages\\sputnik.jpg");
         private static Timer timer = new Timer();
         public static void Init(Form form)
         {
@@ -36,6 +37,7 @@ namespace Asteroids
         {
             Buffer.Graphics.Clear(Color.Black);
             galaxy.GalaxyShow();
+            sputnic.Draw();
             Buffer.Render();
         }
 
@@ -47,7 +49,7 @@ namespace Asteroids
 
         public static void Update()
         {
-
+            sputnic.Update();
            
         }
 
