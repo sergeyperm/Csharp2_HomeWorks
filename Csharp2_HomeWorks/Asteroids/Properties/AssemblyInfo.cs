@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Csharp2_HomeWorks")]
+[assembly: AssemblyTitle("Asteroids")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Csharp2_HomeWorks")]
+[assembly: AssemblyProduct("Asteroids")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("73382d02-5210-4d6b-8082-3b72f7593114")]
+[assembly: Guid("b5b6f265-b6af-4d2a-8e5c-da9fa53ba5f6")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
