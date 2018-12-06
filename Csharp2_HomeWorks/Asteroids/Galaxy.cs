@@ -31,9 +31,9 @@ namespace Asteroids
                 starPositionY = rand.Next(galaxyHeight);
                 stars.Add(new Star(new Point(starPositionX, starPositionY), new Point(10, 10), new Size(2, 2)));
             }
-            planets.Add(new Planet(new Point(500, 200), new Point(10, 10), new Size(150, 150), "\\PlanetImages\\Earth.jpg"));
-            planets.Add(new Planet(new Point(800, 100), new Point(10, 10), new Size(50, 50), "\\PlanetImages\\Luna.jpg"));
-            planets.Add(new Planet(new Point(25, 25), new Point(10, 10), new Size(200, 200), "\\PlanetImages\\Sun.jpg"));
+            planets.Add(new Planet(new Point(500, 200), new Point(10, 10), new Size(150, 150), Properties.Resources.Earth));
+            planets.Add(new Planet(new Point(800, 100), new Point(10, 10), new Size(50, 50), Properties.Resources.Luna));
+            planets.Add(new Planet(new Point(25, 25), new Point(10, 10), new Size(200, 200), Properties.Resources.sun));
         }
 
         public void GalaxyShow()

@@ -10,15 +10,16 @@ namespace Asteroids
 {
     class Planet:GalaxyObjects
     {
-        string planetPath;
-        public Planet(Point pos, Point dir, Size size, string _planetPath) : base(pos, dir, size)
+        Image planetImage;
+        public Planet(Point pos, Point dir, Size size, Image _planetImage) : base(pos, dir, size)
         {
-            planetPath = _planetPath;
+            planetImage = _planetImage;
         }
 
         public override void Draw()
         {
-            Bitmap _image = new Bitmap(Application.StartupPath + planetPath);
+           // Bitmap _image = new Bitmap(Application.StartupPath + planetPath);
+            Bitmap _image = new Bitmap(planetImage);
             Rectangle rect = new Rectangle(pos.X, pos.Y, size.Width, size.Height);
             Game.Buffer.Graphics.DrawImage(_image, rect);
         }
