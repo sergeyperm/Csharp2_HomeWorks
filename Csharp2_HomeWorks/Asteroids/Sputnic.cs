@@ -8,24 +8,30 @@ using System.Windows.Forms;
 
 namespace Asteroids
 {
+    /// <summary>
+    /// Класс спутник
+    /// </summary>
     class Sputnic:GalaxyObjects
     {
-        string sputnikPath;
         public static int r = 110;
         public static int x0 = 570;
         public static int y0 = 270;
         public static double fi = 0.0;
-        public Sputnic(Point pos, Point dir, Size size, string _sputnikPath) : base(pos, dir, size)
+        Bitmap _image;
+        Image sputnicImage;
+        public Sputnic(Point pos, Point dir, Size size,  Image _sputnicImage) : base(pos, dir, size)
         {
-            sputnikPath = _sputnikPath;
+            sputnicImage = _sputnicImage;
+            _image=new Bitmap(sputnicImage);
         }
         public override void Draw()
         {
-            Bitmap _image = new Bitmap(Application.StartupPath + sputnikPath);
             Rectangle rect = new Rectangle(pos.X, pos.Y, size.Width, size.Height);
             Game.Buffer.Graphics.DrawImage(_image, rect);
         }
-
+        /// <summary>
+        /// Метод движения спутника по кругу
+        /// </summary>
         public override void Update()
         {
             fi += 0.1;

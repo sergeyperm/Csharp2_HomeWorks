@@ -8,18 +8,21 @@ using System.Drawing;
 
 namespace Asteroids
 {
+    /// <summary>
+    /// Класс планета
+    /// </summary>
     class Planet:GalaxyObjects
     {
         Image planetImage;
+        Bitmap _image;
         public Planet(Point pos, Point dir, Size size, Image _planetImage) : base(pos, dir, size)
         {
             planetImage = _planetImage;
+            _image=new Bitmap(planetImage);
         }
 
         public override void Draw()
         {
-           // Bitmap _image = new Bitmap(Application.StartupPath + planetPath);
-            Bitmap _image = new Bitmap(planetImage);
             Rectangle rect = new Rectangle(pos.X, pos.Y, size.Width, size.Height);
             Game.Buffer.Graphics.DrawImage(_image, rect);
         }

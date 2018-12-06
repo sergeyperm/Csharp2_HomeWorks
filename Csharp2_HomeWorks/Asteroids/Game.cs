@@ -8,14 +8,20 @@ using System.Windows.Forms;
 
 namespace Asteroids
 {
-   
+   /// <summary>
+   /// Класс игра
+   /// </summary>
     class Game
     {
         private static BufferedGraphicsContext _context;
         public static BufferedGraphics Buffer;
         public static Galaxy galaxy;
-        public static Sputnic sputnic = new Sputnic(new Point(100, 200), new Point(5, 5), new Size(20, 20), "\\PlanetImages\\sputnik.jpg");
+        public static Sputnic sputnic = new Sputnic(new Point(100, 200), new Point(5, 5), new Size(20, 20), Properties.Resources.sputnik);
         private static Timer timer = new Timer();
+        /// <summary>
+        /// Метод инициализации класса Игра 
+        /// </summary>
+        /// <param name="form"></param>
         public static void Init(Form form)
         {
             Graphics g;

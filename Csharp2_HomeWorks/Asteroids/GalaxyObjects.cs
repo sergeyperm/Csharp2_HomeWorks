@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Asteroids
-{
+{/// <summary>
+/// Базовый класс космических объектов
+/// </summary>
     abstract class GalaxyObjects
     {
         public Point pos;

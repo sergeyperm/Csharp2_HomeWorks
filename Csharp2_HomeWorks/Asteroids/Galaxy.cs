@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Asteroids
-{
+{/// <summary>
+/// Класс создания галактики
+/// </summary>
     class Galaxy
     {
         public int galaxyWidth { get; set; }

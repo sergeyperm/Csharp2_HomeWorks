@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Asteroids
-{
+{/// <summary>
+/// Класс звезда
+/// </summary>
     class Star:GalaxyObjects
     {
         public Star(Point pos, Point dir, Size size) : base(pos, dir, size)
