@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Asteroids
 {/// <summary>
@@ -15,11 +16,13 @@ namespace Asteroids
         public int galaxyHeight { get; set; }
         public List<Star> stars;
         public List<Planet> planets;
+       
         public Galaxy(int _galaxyWidth, int _galaxyHeight)
         {
             galaxyWidth = _galaxyWidth;
             galaxyHeight = _galaxyHeight;
         }
+
         public void GalaxyCreate()
         {
             Random rand = new Random();
@@ -36,6 +39,8 @@ namespace Asteroids
             planets.Add(new Planet(new Point(500, 200), new Point(10, 10), new Size(150, 150), Properties.Resources.Earth));
             planets.Add(new Planet(new Point(800, 100), new Point(10, 10), new Size(50, 50), Properties.Resources.Luna));
             planets.Add(new Planet(new Point(25, 25), new Point(10, 10), new Size(200, 200), Properties.Resources.sun));
+            
+
         }
 
         public void GalaxyShow()
@@ -49,9 +54,8 @@ namespace Asteroids
             {
                 planet.Draw();
             }
+            
         }
-
-
     }
 
 }

@@ -57,9 +57,11 @@
     <Compile Include="Galaxy.cs" />
     <Compile Include="GalaxyObjects.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameObjectException.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ship.cs" />
     <Compile Include="Sputnic.cs" />
     <Compile Include="Star.cs" />
     <EmbeddedResource Include="Form1.resx">

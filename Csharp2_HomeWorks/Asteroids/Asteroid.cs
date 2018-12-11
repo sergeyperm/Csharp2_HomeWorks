@@ -12,6 +12,7 @@ namespace Asteroids
         public Asteroid(Point pos, Point dir, Size size) : base(pos, dir, size)
         {
         }
+       
         public override void Draw()
         {
             Game.Buffer.Graphics.DrawEllipse(Pens.Orange, pos.X, pos.Y, size.Width, size.Height);

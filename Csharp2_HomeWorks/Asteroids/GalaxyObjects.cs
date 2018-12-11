@@ -17,16 +17,21 @@ namespace Asteroids
     /// <summary>
     /// Базовый класс космических объектов
     /// </summary>
-    abstract class GalaxyObjects:ICollision
+    /// 
+    public delegate void Message();
+
+    abstract class GalaxyObjects : ICollision
     {
         public Point pos;
         public Point dir;
         public Size size;
+        public virtual Size Size { get { return size; } set { size = value; } }
+        
         public GalaxyObjects(Point _pos, Point _dir, Size _size)
         {
             pos = _pos;
             dir = _dir;
-            size = _size;
+            Size = _size;
         }
         public abstract void Draw();
         public abstract void Update();

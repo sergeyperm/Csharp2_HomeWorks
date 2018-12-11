@@ -24,6 +24,7 @@ namespace Asteroids
             sputnicImage = _sputnicImage;
             _image=new Bitmap(sputnicImage);
         }
+        
         public override void Draw()
         {
             Rectangle rect = new Rectangle(pos.X, pos.Y, size.Width, size.Height);

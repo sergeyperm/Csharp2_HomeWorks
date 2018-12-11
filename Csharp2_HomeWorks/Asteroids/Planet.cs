@@ -20,7 +20,8 @@ namespace Asteroids
             planetImage = _planetImage;
             _image=new Bitmap(planetImage);
         }
-
+       
+        
         public override void Draw()
         {
             Rectangle rect = new Rectangle(pos.X, pos.Y, size.Width, size.Height);
