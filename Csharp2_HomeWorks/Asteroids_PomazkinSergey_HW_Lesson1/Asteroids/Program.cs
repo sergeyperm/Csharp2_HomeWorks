@@ -18,9 +18,9 @@ namespace Asteroids
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Form2 splashScreen = new Form2();
+            SplashScreen splashScreen = new SplashScreen();
             splashScreen.Show();
-            while (splashScreen.progressBar1.Value < 100)
+            while(splashScreen.progressBar1.Value<100)
             {
                 Application.DoEvents();
             }
