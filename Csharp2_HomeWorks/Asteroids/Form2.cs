@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace Asteroids
 {
@@ -15,8 +16,7 @@ namespace Asteroids
         public Form2()
         {
             InitializeComponent();
-            InitializeComponent();
-            timer1.Interval = 50; // 50 миллисекунд
+            timer1.Interval = 500; // 50 миллисекунд
             timer1.Enabled = true;
             timer1.Start();
             timer1.Tick += Timer1_Tick;
@@ -24,8 +24,8 @@ namespace Asteroids
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            progressBar1.Value++;
-            if (progressBar1.Value == 100) timer1.Stop();
+            progressBar1.PerformStep();
+           if (progressBar1.Value == 100) timer1.Stop();
         }
 
     }

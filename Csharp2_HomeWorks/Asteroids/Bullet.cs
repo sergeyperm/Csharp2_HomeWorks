@@ -13,6 +13,7 @@ namespace Asteroids
         {
 
         }
+        
         /// <summary>
         /// Свойство Size контроль создания размеров пули
         /// </summary>
@@ -46,6 +47,26 @@ namespace Asteroids
         {
             Update();
             Draw();
+        }
+        public void Up()
+        {
+            pos.Y = pos.Y - dir.Y * 3;
+            if (pos.Y < 0) pos.Y = 0;
+        }
+        public void Down()
+        {
+            pos.Y = pos.Y + dir.Y * 3;
+            if (pos.Y >600) pos.Y = 600;
+        }
+        public void Left()
+        {
+            pos.X = pos.X - dir.Y * 3;
+            if (pos.X < 0) pos.X = 0;
+        }
+        public void Right()
+        {
+            pos.X = pos.X + dir.X * 3;
+            if (pos.X >1000) pos.X = 1000;
         }
 
     }

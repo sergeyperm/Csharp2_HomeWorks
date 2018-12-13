@@ -19,6 +19,7 @@ namespace Asteroids
     /// </summary>
     /// 
     public delegate void Message();
+    
 
     abstract class GalaxyObjects : ICollision
     {

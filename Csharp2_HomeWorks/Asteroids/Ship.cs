@@ -13,16 +13,17 @@ namespace Asteroids
     {
         private int _energy = 100;
         public static event Message MessageDie;
+        public static event Message ShootDown;
         public int Energy => _energy;
         
-        public void EnergyLow(int n)
+        public void EnergyLow(int n) //метод уменьшения энергии при столкновении с астероидом
         {
             _energy -= n;
         }
 
-        public void EnergyUp(int n)
+        public void EnergyUp(int n) //метод увеличения энергии при столкновении с аптечкой
         {
-            _energy += n;
+           if(_energy<100) _energy += n;
         }
 
         public Ship(Point pos, Point dir, Size size) : base(pos, dir, size)
@@ -61,6 +62,9 @@ namespace Asteroids
         {
             MessageDie?.Invoke();
         }
-
+        public void ShootDownAsteroid()
+        {
+            ShootDown?.Invoke();
+        }
     }
 }
