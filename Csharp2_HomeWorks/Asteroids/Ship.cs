@@ -15,7 +15,9 @@ namespace Asteroids
         public static event Message MessageDie;
         public static event Message ShootDown;
         public int Energy => _energy;
-        
+        Bitmap _image;
+        Image shipImage;
+
         public void EnergyLow(int n) //метод уменьшения энергии при столкновении с астероидом
         {
             _energy -= n;
@@ -26,16 +28,18 @@ namespace Asteroids
            if(_energy<100) _energy += n;
         }
 
-        public Ship(Point pos, Point dir, Size size) : base(pos, dir, size)
+        public Ship(Point pos, Point dir, Size size, Image _shipImage) : base(pos, dir, size)
         {
-            
+            shipImage = _shipImage;
+            _image = new Bitmap(shipImage);
+
         }
         public override void Draw()
         {
-            Game.Buffer.Graphics.DrawRectangle(Pens.Aquamarine, pos.X, pos.Y, size.Width, size.Height);
-            Game.Buffer.Graphics.FillRectangle(Brushes.Wheat, pos.X, pos.Y,size.Width, size.Height);
-           // Rectangle rect = new Rectangle(pos.X, pos.Y, size.Width, size.Height);
-            //Game.Buffer.Graphics.DrawImage(_image, rect);
+            //Game.Buffer.Graphics.DrawRectangle(Pens.Aquamarine, pos.X, pos.Y, size.Width, size.Height);
+            //Game.Buffer.Graphics.FillRectangle(Brushes.Wheat, pos.X, pos.Y,size.Width, size.Height);
+            Rectangle rect = new Rectangle(pos.X, pos.Y, size.Width, size.Height);
+            Game.Buffer.Graphics.DrawImage(_image, rect);
         }
         public override void Update()
         {

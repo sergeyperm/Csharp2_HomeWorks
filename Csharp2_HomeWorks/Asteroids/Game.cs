@@ -18,7 +18,7 @@ namespace Asteroids
     {
         private static BufferedGraphicsContext _context;
         public static BufferedGraphics Buffer;
-        private static Ship _ship = new Ship(new Point(500, 200), new Point(5, 5), new Size(20, 20));
+        private static Ship _ship = new Ship(new Point(300, 200), new Point(10, 10), new Size(40, 20),Properties.Resources.ship);
         public static Galaxy galaxy;
         public static Sputnic sputnic = new Sputnic(new Point(100, 200), new Point(5, 5), new Size(20, 20), Properties.Resources.sputnik);
         private static Timer timer = new Timer();
@@ -29,8 +29,8 @@ namespace Asteroids
         private static List<Bullet> bullets;//список снярядов
         public static int countAsteroids = 0;
         public delegate void Direction();
-        public static Dictionary<Bullet, Direction> bulletDirections;
-
+        public static Dictionary<Bullet, Direction> bulletDirections=new Dictionary<Bullet, Direction>();//словарь снарядов и направлений движения снарядов
+        public static int countAst=10;
 
 
 
@@ -71,7 +71,7 @@ namespace Asteroids
 
         private static void Timer1_Tick(object sender, EventArgs e)
         {
-            if (aidKit==null) aidKit = new AidKit(new Point(rand.Next(10, 500), rand.Next(10, 400)), new Point(5, 5), new Size(10, 10));
+            if (aidKit==null) aidKit = new AidKit(new Point(rand.Next(10, 500), rand.Next(10, 400)), new Point(5, 5), new Size(30, 30), Properties.Resources.AidKit);
         }
 
         /// <summary>
@@ -87,30 +87,31 @@ namespace Asteroids
                 bullets.Add(newBullet);
             }
 
-            //if (e.KeyCode == Keys.A)
-            //{
-            //    Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 0), new Size(5, 1));
-            //    Direction newbulletDirection = newBullet.Left;
-            //    bulletDirections.Add(newBullet, newbulletDirection);
-            //}
-            //if (e.KeyCode == Keys.D)
-            //{
-            //    Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 0), new Size(5, 1));
-            //    Direction newbulletDirection = newBullet.Right;
-            //    bulletDirections.Add(newBullet, newbulletDirection);
-            //}
-            //if (e.KeyCode == Keys.W)
-            //{
-            //    Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 0), new Size(5, 1));
-            //    Direction newbulletDirection = newBullet.Up;
-            //    bulletDirections.Add(newBullet, newbulletDirection);
-            //}
-            //if (e.KeyCode == Keys.S)
-            //{
-            //    Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 0), new Size(5, 1));
-            //    Direction newbulletDirection = newBullet.Down;
-            //    bulletDirections.Add(newBullet, newbulletDirection);
-            //}
+            //Создание снарядов и направлений движения снарядов, запись в словарь
+            if (e.KeyCode == Keys.A)
+            {
+                Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 10), new Size(5, 1));
+                Direction newbulletDirection = newBullet.Left;
+                bulletDirections.Add(newBullet, newbulletDirection);
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 10), new Size(5, 1));
+                Direction newbulletDirection = newBullet.Right;
+                bulletDirections.Add(newBullet, newbulletDirection);
+            }
+            if (e.KeyCode == Keys.W)
+            {
+                Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 10), new Size(1, 5));
+                Direction newbulletDirection = newBullet.Up;
+                bulletDirections.Add(newBullet, newbulletDirection);
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                Bullet newBullet = new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(10, 10), new Size(1, 5));
+                Direction newbulletDirection = newBullet.Down;
+                bulletDirections.Add(newBullet, newbulletDirection);
+            }
             //Задание направления движения корабля
             if (e.KeyCode == Keys.Up) _ship.Up();
             if (e.KeyCode == Keys.Down) _ship.Down(galaxy);
@@ -150,6 +151,7 @@ namespace Asteroids
             aidKit?.Draw();
             foreach (Asteroid a in asteroids) a.Draw();
             foreach (Bullet b in bullets) b.Draw();
+            foreach (KeyValuePair<Bullet, Direction> keyValue in bulletDirections) keyValue.Key.Draw();
             //Вывод на экран информации о энергии корабля и количестве сбитых астероидов
             if (_ship != null)
             {
@@ -160,18 +162,38 @@ namespace Asteroids
             Buffer.Render();
         }
 
+        /// <summary>
+        /// Метод создания коллекции астероидов +1 при сбитии всех астероидов предыдущей коллекции
+        /// </summary>
+        public static void createAsteroids()
+        {
+            for (var i = 0; i < countAst; i++)
+            {
+                int r = rand.Next(5, 20);
+                asteroids.Add(new Asteroid(new Point(rand.Next(0, galaxy.galaxyWidth), rand.Next(0, galaxy.galaxyHeight)), new Point(5, 5), new Size(r, r)));
+            }
+        }
+
+        /// <summary>
+        /// Метод контроля количества астероидов в коллекции
+        /// </summary>
+        public static void checkCountAsteroids()
+        {
+            if (asteroids.Count == 0)
+            {
+                countAst++;
+                createAsteroids();
+            }
+        }
+
+
         public static void Load()
         {
             galaxy.GalaxyCreate();
             galaxy.GalaxyShow();
             asteroids = new List<Asteroid>();
             bullets = new List<Bullet>();
-            for (var i = 0; i < 30; i++)
-            {
-                int r = rand.Next(5, 20);
-
-                asteroids.Add(new Asteroid(new Point(rand.Next(0, galaxy.galaxyWidth), rand.Next(0, galaxy.galaxyHeight)), new Point(5, 5), new Size(r, r)));
-            }
+            createAsteroids();
         }
 
         /// <summary>
@@ -181,12 +203,12 @@ namespace Asteroids
         public static void CheckCollisionsAstBull()
         {
             
-            foreach (Bullet b in bullets)
+            foreach (KeyValuePair<Bullet, Direction> b in bulletDirections)
             {
                 foreach (Asteroid a in asteroids)
                 {
-                    //Столкновение пули и астероида
-                    if (a.Collision(b))
+                    //Столкновение снаряда и астероида
+                    if (a.Collision(b.Key))
                     {
                         System.Media.SystemSounds.Beep.Play();
                         asteroids.Remove(a);
@@ -209,13 +231,13 @@ namespace Asteroids
                 b.Update();
             }
 
-            //if (bulletDirections != null)
-            //{
-            //    foreach (KeyValuePair<Bullet, Direction> keyValue in bulletDirections)
-            //    {
-            //        keyValue.Value.Invoke();
-            //    }
-            //}
+            if (bulletDirections != null)
+            {
+                foreach (KeyValuePair<Bullet, Direction> keyValue in bulletDirections)
+                {
+                    keyValue.Value.Invoke();
+                }
+            }
 
             foreach (Asteroid a in asteroids)
             {
@@ -237,6 +259,7 @@ namespace Asteroids
                     aidKit = null;
                 }
             }
+            checkCountAsteroids();
         }
     }
 }

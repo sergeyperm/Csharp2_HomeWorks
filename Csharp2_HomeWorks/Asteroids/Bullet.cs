@@ -23,7 +23,7 @@ namespace Asteroids
             
             set
             {
-                if ((value.Height < 0 || value.Width < 0) || (value.Height > 1 || value.Width > 7))
+                if ((value.Height < 0 || value.Width < 0) || (value.Height > 7 || value.Width > 7))
                 {
                     throw new GameObjectException("Неверно заданы параметры пули!!");
                 }
@@ -51,22 +51,22 @@ namespace Asteroids
         public void Up()
         {
             pos.Y = pos.Y - dir.Y * 3;
-            if (pos.Y < 0) pos.Y = 0;
+            if (pos.Y < 0) pos.Y = -10;
         }
         public void Down()
         {
             pos.Y = pos.Y + dir.Y * 3;
-            if (pos.Y >600) pos.Y = 600;
+            if (pos.Y >600) pos.Y = 610;
         }
         public void Left()
         {
             pos.X = pos.X - dir.Y * 3;
-            if (pos.X < 0) pos.X = 0;
+            if (pos.X < 0) pos.X = -10;
         }
         public void Right()
         {
             pos.X = pos.X + dir.X * 3;
-            if (pos.X >1000) pos.X = 1000;
+            if (pos.X >1000) pos.X = 1010;
         }
 
     }
