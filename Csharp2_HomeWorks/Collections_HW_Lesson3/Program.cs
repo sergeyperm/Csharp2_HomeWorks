@@ -9,18 +9,20 @@ namespace Collections_HW_Lesson3
 {
     class Program
     {
-        public static List<int> listInt = new List<int>();
-        public static List<T> listGeneric = new List<T>();
-        public static int[] arrayInt;
+        public static List<int> listInt = new List<int>();//Исходная коллекция целых чисел
         public static Random rand = new Random();
-        public static Dictionary<int, int> countInt = new Dictionary<int, int>();
+        public static Dictionary<int, int> countInt = new Dictionary<int, int>();//Словарь для подсчета элементов в коллекции
+        public static Dictionary<int, int> countInt1 = new Dictionary<int, int>();//Словарь для подсчета с использованием LINQ
         static void Main(string[] args)
         {
+                       
+            //Подсчет количества вхождений в список для целых чисел
             #region
             for (int i=0;i<100;i++)
             {
                 listInt.Add(rand.Next(1, 100));
             }
+            Console.WriteLine("Задана коллекция целых чисел:");
             foreach (int i in listInt)
             {
                 Console.Write(i+" ");
@@ -29,13 +31,7 @@ namespace Collections_HW_Lesson3
             Console.WriteLine();
             Console.WriteLine("=============================");
             Console.ReadKey();
-            foreach (int i in listInt)
-            {
-                Console.Write(i+" ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("=============================");
-            Console.ReadKey();
+            Console.WriteLine("Cколько раз каждый элемент встречается в данной коллекции");
             int count = 0;
             for (int k=0;k<listInt.Count;k++)
             {
@@ -56,39 +52,44 @@ namespace Collections_HW_Lesson3
                 }
 
             }
-
+            
+            //Метод добавления в словарь
             void Add(int item)
             {
                 countInt.Add(item, ++count);
                 count = 0;
             }
-        
-            foreach (KeyValuePair<int, int> d in countInt)
-            {
-                Console.WriteLine($"{d.Key}-{d.Value}");
-            }
-           
+            printDictionary(countInt);
             Console.WriteLine();
             Console.WriteLine("=============================");
             Console.ReadKey();
-            var numbers = from n in listInt
-                          where n > 20
-                          select n;
+            #endregion
 
-
-            foreach (int i in numbers)
+            //Подсчет количества вхождений в список для целых чисел c использованием LINQ 
+            #region
+            List<int> filter2;
+            //Выбор элементов из коллекции с помощью LINQ запроса
+            foreach (int i in listInt)
             {
-                Console.Write(i + " ");
+                if (!countInt1.ContainsKey(i))
+                {
+                    filter2 = listInt.Where(s => s == i).ToList();//выборка из исходной коллекции по значению текущего элемента
+                    countInt1.Add(i, filter2.Count);//запись значения и количество элементов выборки
+                }
             }
 
-            Console.WriteLine();
-            Console.WriteLine("=============================");
+            Console.WriteLine("Cколько раз каждый элемент встречается в заданной коллекции c использованием LINQ");
+            printDictionary(countInt1);
             Console.ReadKey();
+            #endregion
 
-            #endregion  //Подсчет количества вхождений в список для целых чисел
-
-
-
+            void printDictionary(Dictionary<int,int> countInt)
+            {
+                foreach (KeyValuePair<int, int> d in countInt)
+                {
+                    Console.WriteLine($"{d.Key}-{d.Value}");
+                }
+            }
         }
     }
 }
